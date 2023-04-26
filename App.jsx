@@ -1,0 +1,30 @@
+import React from 'react';
+
+const ThemeContext = React.createContext();
+
+const Content = () => {
+    const context = React.useContext(ThemeContext);
+    return (
+        <section className={`theme-${context.theme}`}>
+            <span>Current theme: {context.theme}</span>
+            <button onClick={context.switchTheme}>Switch Theme</button>
+        </section>
+    );
+};
+
+function App() {
+    const [theme, setTheme] = React.useState("dark");
+    const switchTheme = () => {
+        theme === "dark" ? setTheme("light") : setTheme("dark");
+    };
+    const contextValue = { theme, switchTheme };
+    return (
+        <ThemeContext.Provider value={contextValue}>
+            <Content />
+        </ThemeContext.Provider>
+    );
+}
+
+document.body.innerHTML = "<div id='root'></div>";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
