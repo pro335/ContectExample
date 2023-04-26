@@ -17,9 +17,8 @@ function App() {
     const switchTheme = () => {
         theme === "dark" ? setTheme("light") : setTheme("dark");
     };
-    const contextValue = { theme, switchTheme };
     return (
-        <ThemeContext.Provider value={contextValue}>
+        <ThemeContext.Provider value={{ theme, switchTheme }}>
             <Content />
         </ThemeContext.Provider>
     );
